@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: financio-api-service
+  namespace: develop
+spec:
+  selector:
+    app: financio-api
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80

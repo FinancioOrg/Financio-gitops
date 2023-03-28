@@ -1,0 +1,4 @@
+bases:
+  - ./back-end
+  - ./front-end
+  - ./mongodb

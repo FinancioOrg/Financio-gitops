@@ -1,0 +1,8 @@
+kubectl krew update
+kubectl krew install minio
+
+kubectl minio init
+
+kubectl get all --namespace minio-operator
+
+kubectl minio proxy

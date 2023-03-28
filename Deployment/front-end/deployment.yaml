@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: financio-ui
+  namespace: develop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: financio-ui
+  template:
+    metadata:
+      labels:
+        app: financio-ui
+    spec:
+      containers:
+      - name: financio-ui
+        image: k3d-fontys:5000/financio-ui:v0.1
+        ports:
+        - containerPort: 3000

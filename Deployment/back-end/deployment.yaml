@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: financio-api
+  namespace: develop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: financio-api
+  template:
+    metadata:
+      labels:
+        app: financio-api
+    spec:
+      containers:
+      - name: financio-api
+        image: k3d-fontys:5000/financio-api:v0.1
+        ports:
+        - containerPort: 80
+        env:
+        - name: MongoDb__ConnectionString
+          value: "mongodb://mongodb-service:27017"
+        - name: MongoDb__DatabaseName
+          value: "FinancioDB"
+        - name: MongoDb__CollectionName
+          value: "Articles"
+        - name: BlobStorage__ConnectionString
+          value: "DefaultEndpointsProtocol=https;AccountName=financiostorage;AccountKey=+Qc4IXZnSntH7od7NotzkXXPNj6S+Vpkk9q07WAj6fuX3xgj6QcLQd6blN09D1pEWhsQC73rWYKR+AStnAhsRw==;EndpointSuffix=core.windows.net"
+        - name: BlobStorage__ArticleContainer
+          value: "data"

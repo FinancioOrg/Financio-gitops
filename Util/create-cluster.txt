@@ -1,0 +1,12 @@
+k3d cluster create fontys --servers 1 --agents 1 --port 9080:80@loadbalancer --registry-use fontys:5001
+
+kubectl create namespace develop
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.4.0/aio/deploy/recommended.yaml
+
+kubectl create sa admin-user -n kubernetes-dashboard
+
+kubectl create clusterrolebinding admin-user --clusterrole=cluster-admin --serviceaccount=kubernetes-dashboard:admin-user
+
+kubectl -n kubernetes-dashboard create token admin-user
+
